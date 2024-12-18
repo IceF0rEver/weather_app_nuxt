@@ -10,9 +10,11 @@ export default defineNuxtConfig({
     '@nuxt/icon'
   ],
   i18n: {
+    lazy: true,
+    langDir: 'langs',
     locales: [
-      { code: 'en', language: 'en-US' },
-      { code: 'fr', language: 'fr-FR' }
+      { code: 'en', language: 'en-US', file: "en-US.ts"},
+      { code: 'fr', language: 'fr-FR', file: "fr-FR.ts" }
     ],
     defaultLocale: 'fr',
   },
@@ -26,5 +28,12 @@ export default defineNuxtConfig({
     classSuffix: '-mode',
     storage: 'localStorage', // or 'sessionStorage' or 'cookie'
     storageKey: 'nuxt-color-mode'
-  }
+  },
+  runtimeConfig: {
+    public: {
+      API_KEY: process.env.API_KEY,
+      API_MAP: process.env.API_MAP
+    },
+  },
+  ssr: false,  
 })
