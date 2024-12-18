@@ -1,5 +1,19 @@
 export default defineI18nLocale(async (locale) => {
     return {
-      welcome: 'Welcome'
+      title: {
+        lang : "English",
+        current: "Instant Weather",
+        daily: "Next Days",
+        hourly: "Next Hours",
+        favorites: "Your Favorite Locations",
+        addLocation: "Add a Location"
+      },
+      label: {
+        addLocation: "Location Name"
+      },
+      button: {
+        add: "Add",
+        addCurrentLocation: "Add current position"
+      }
     }
   })
