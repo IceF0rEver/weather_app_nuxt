@@ -1,0 +1,17 @@
+{
+  "title": {
+    "lang": "Français",
+    "current": "Météo instantanée",
+    "daily": "Prochains jours",
+    "hourly": "Prochaines heures",
+    "favorites": "Vos lieux favoris",
+    "addLocation": "Ajouter un lieu"
+  },
+  "label": {
+    "addLocation": "Nom du lieu"
+  },
+  "button": {
+    "add": "Ajouter",
+    "addCurrentLocation": "Ajouter la position actuelle"
+  }
+}
