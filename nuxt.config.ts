@@ -12,9 +12,10 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
-    '@nuxt/icon',
     // '@maptiler/weather',
     // '@maptiler/sdk',
+    '@nuxt/icon',
+    '@nuxt/image',
   ],
   i18n: {
     lazy: true,
