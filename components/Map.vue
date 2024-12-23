@@ -42,9 +42,6 @@ useAsyncData('map', async () => {
   }
 });
 
-
-
-
 onScopeDispose(() => {
   map.value?.remove();
 });
