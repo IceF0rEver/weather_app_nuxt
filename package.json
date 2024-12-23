@@ -10,6 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@maptiler/sdk": "^2.5.1",
+    "@maptiler/weather": "^2.2.0",
     "@nuxt/icon": "^1.10.2",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/i18n": "^9.1.1",
@@ -18,5 +20,8 @@
     "nuxt": "^3.14.1592",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2"
   }
 }

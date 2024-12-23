@@ -6,14 +6,4 @@
   <slot />
 </template>
 
-<script lang="ts">
-import { useGeolocation } from '@vueuse/core'
-const { coords } = useGeolocation()
-console.log(coords);
-// window.addEventListener('beforeunload', function () {
-//     localStorage.removeItem('current');
-// });
-// window.addEventListener('unload', function () {
-//     localStorage.removeItem('current');
-// });
-</script>
+<script lang="ts"></script>

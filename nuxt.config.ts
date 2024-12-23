@@ -1,13 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from 'path';
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  alias: {
+    '@': resolve(__dirname, './'),
+  },
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@vueuse/nuxt',
-    '@nuxt/icon'
+    '@nuxt/icon',
+    // '@maptiler/weather',
+    // '@maptiler/sdk',
   ],
   i18n: {
     lazy: true,
