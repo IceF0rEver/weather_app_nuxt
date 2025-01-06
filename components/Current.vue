@@ -11,7 +11,7 @@
     >
       <div>
         <h3 class="text-lg font-semibold dark:text-gray-50">{{ data.name }}</h3>
-        <time class="text-sm text-gray-600 dark:text-gray-300" :datetime="data.dt">
+        <time class="text-sm text-gray-600 dark:text-gray-300" :datetime="data.dt.toString()">
           {{
             new Date(data.dt * 1000).toLocaleTimeString(locale, {
               hour: "2-digit",

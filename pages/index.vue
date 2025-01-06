@@ -1,12 +1,12 @@
 <template>
   <div class=" flex flex-col dark:bg-gray-800 bg-gray-300">
     <!-- <div class="absolute w-full h-full dark:bg-black dark:opacity-50"></div> -->
-    <div class="flex flex-col px-4">
+    <div class="flex flex-col px-4 gap-4">
       <!-- Météo instantanée -->
       <Current/>
       
       <!-- Prévisions par tranches de 1 heures -->
-      <!-- <Hourly/> -->
+      <Hourly/>
       
       <!-- Prévisions pour les jours suivants -->
       <!-- <Daily/> -->
