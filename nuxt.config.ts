@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     // '@maptiler/sdk',
     '@nuxt/icon',
     '@nuxt/image',
+    // 'shadcn-nuxt',
   ],
   i18n: {
     lazy: true,
