@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden">
+  <div class="overflow-hidden rounded-sm">
     <div class="relative w-full h-screen max-h-64 mb-[-35px]">
       <div class="relative w-full h-full" ref="mapContainer"></div>
     </div>
@@ -23,10 +23,13 @@ const runtimeConfig = useRuntimeConfig();
 config.apiKey = runtimeConfig.public.API_MAP;
 const layer = new PrecipitationLayer();
 
-useAsyncData('map', async () => {
-  await nextTick();
+onMounted(() => {
   if (mapContainer.value && current.value.length > 1) {
-    const initialState = { lng: current.value[1].longitude, lat: current.value[1].latitude, zoom: 11 };
+    const initialState = {
+      lng: current.value[1].longitude,
+      lat: current.value[1].latitude,
+      zoom: 11,
+    };
 
     const mapInstance = new Map({
       container: mapContainer.value,
@@ -36,6 +39,7 @@ useAsyncData('map', async () => {
     });
 
     map.value = mapInstance;
+
     mapInstance.on('load', () => {
       mapInstance.addLayer(layer);
     });

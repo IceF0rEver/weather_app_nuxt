@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white dark:bg-gray-900 dark:bg-opacity-80 bg-opacity-75 rounded-lg shadow p-5 mb-6">
+  <section class="bg-white dark:bg-gray-900 dark:bg-opacity-80 bg-opacity-75 rounded-lg shadow p-5">
     <h2 class="font-bold dark:text-gray-50 text-xl mb-4">{{t('title.daily')}}</h2>
     <div>
       <div class=" bg-white rounded-lg p-1 pr-7 py-4">
