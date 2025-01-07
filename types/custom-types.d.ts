@@ -34,7 +34,12 @@ export interface WeatherData{
   humidity: string;
   icon: string;
   }
-  export interface WeatherDataHourlyChart{
-    dt: string;
-    Température: number;
-    }
+export interface WeatherDataHourlyChart{
+  dt: string;
+  Température: number;
+  }
+export interface WeatherDataDailyChart{
+  dt: string;
+  TempératureMax: number;
+  TempératureMin: number;
+  }

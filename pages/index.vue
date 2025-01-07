@@ -9,7 +9,7 @@
       <Hourly/>
       
       <!-- Prévisions pour les jours suivants -->
-      <!-- <Daily/> -->
+      <Daily/>
 
       <div class="mx-auto">
       <!-- <NuxtLink to="/favorites">
