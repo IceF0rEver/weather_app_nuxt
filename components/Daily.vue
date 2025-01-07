@@ -60,7 +60,7 @@ list.forEach((item: WeatherApiResponse) => {
   const date = new Date(item.dt * 1000).setHours(0, 0, 0, 0);
   if (!dailyData[date]) {
     dailyData[date] = {
-      dt: new Date(item.dt * 1000).toLocaleDateString(locale.value, { weekday: 'short' }),
+      dt: item.dt.toString(),
       temp_min: Number(item.main.temp_min.toFixed(0)),
       temp_max: Number(item.main.temp_max.toFixed(0)),
       humidity: item.main.humidity.toFixed(0),
@@ -74,14 +74,14 @@ list.forEach((item: WeatherApiResponse) => {
 
 Object.values(dailyData).forEach((day) => {
   items.value.push({
-    dt: day.dt,
+    dt: new Date(Number(day.dt) * 1000).toLocaleDateString(locale.value, { weekday: 'short' }),
     temp_min: Number(day.temp_min.toFixed(0)),
     temp_max: Number(day.temp_max.toFixed(0)),
     humidity: day.humidity,
     icon: day.icon,
   });
   itemsChart.value.push({
-    dt: day.dt,
+    dt: new Date(Number(day.dt) * 1000).toLocaleDateString(locale.value, { weekday: 'long' }),
     TempératureMax: Number(day.temp_max.toFixed(0)),
     TempératureMin: Number(day.temp_min.toFixed(0)),
   });
