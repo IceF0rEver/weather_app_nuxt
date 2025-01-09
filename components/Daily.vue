@@ -2,9 +2,9 @@
   <section class="bg-white dark:bg-gray-900 dark:bg-opacity-80 bg-opacity-75 rounded-lg shadow p-5">
     <h2 class="font-bold dark:text-gray-50 text-xl mb-4">{{$t('title.daily')}}</h2>
     <div>
-      <div class=" bg-white rounded-lg p-1 pr-7 py-4">
+      <div class=" bg-white rounded-lg p-1 pr-7 py-4 overflow-x-auto">
         <LineChart
-          class="h-72"
+          class="h-72 min-w-[420px] sm:min-w-1/3"
           :data="itemsChart"
           index="dt"
           :categories="['TempératureMin','TempératureMax']"
@@ -13,7 +13,7 @@
           :show-x-axis="false"
           :show-tooltip="false"
         />
-          <div class="flex justify-between ml-6">
+          <div class="flex justify-between ml-6 min-w-[400px] sm:min-w-1/3">
             <div v-for="item in items":key="item.dt">
             <div class="flex content-center justify-center">
               <time class="text-xs  text-black">

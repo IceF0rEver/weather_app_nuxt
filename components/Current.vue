@@ -10,8 +10,8 @@
       class="flex items-center justify-between"
     >
       <div>
-        <h3 class="text-lg font-semibold dark:text-gray-50">{{ data.name }}</h3>
-        <time class="text-sm text-gray-600 dark:text-gray-300" :datetime="data.dt.toString()">
+        <h3 class="text-sm sm:text-lg font-semibold dark:text-gray-50">{{ data.name }}</h3>
+        <time class="text-xs sm:text-sm text-gray-600 dark:text-gray-300" :datetime="data.dt.toString()">
           {{
             new Date(data.dt * 1000).toLocaleTimeString(locale, {
               hour: "2-digit",
@@ -27,19 +27,19 @@
           }}
         </time>
       </div>
-      <div class="flex">
-        <div class="text-right">
-          <p class="text-5xl dark:text-gray-50">{{ data.main.temp.toFixed(0) }}°C</p>
-          <p class="text-lg text-gray-600 dark:text-gray-300">{{ data.weather[0].description }}</p>
+      <div class="flex gap-2">
+        <div class="text-right my-auto">
+          <p class="text-2xl sm:text-5xl dark:text-gray-50">{{ data.main.temp.toFixed(0) }}°C</p>
+          <p class="text-sm sm:text-lg text-gray-600 dark:text-gray-300">{{ data.weather[0].description }}</p>
         </div>
-        <div class="ml-2 w-20 h-20 bg-blue-300 rounded-full">
+        <div class="my-auto w-2/3 sm:w-full">
           <NuxtImg
+            class="mx-auto my-auto bg-blue-300 rounded-full"
             :src="
               'https://openweathermap.org/img/wn/' +
               data.weather[0].icon +
               '@2x.png'
             "
-            :height="100"
             :width="100"
           />
         </div>
