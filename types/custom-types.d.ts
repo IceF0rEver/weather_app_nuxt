@@ -28,18 +28,18 @@ export interface WeatherApiResponse {
   }
 
 export interface WeatherData{
-  dt: string;
+  dt: number;
   temp_min: number;
   temp_max: number;
   humidity: string;
   icon: string;
   }
 export interface WeatherDataHourlyChart{
-  dt: string;
+  dt: number;
   Température: number;
   }
 export interface WeatherDataDailyChart{
-  dt: string;
+  dt: number;
   TempératureMax: number;
   TempératureMin: number;
   }

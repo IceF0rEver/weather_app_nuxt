@@ -1,6 +1,6 @@
 <template>
   <section class="bg-white dark:bg-gray-900 dark:bg-opacity-80 bg-opacity-75 rounded-lg shadow p-5">
-    <h2 class="font-bold dark:text-gray-50 text-xl mb-4">{{t('title.daily')}}</h2>
+    <h2 class="font-bold dark:text-gray-50 text-xl mb-4">{{$t('title.daily')}}</h2>
     <div>
       <div class=" bg-white rounded-lg p-1 pr-7 py-4">
         <LineChart
@@ -11,11 +11,16 @@
           :colors="['#00BFFF','#FF4500']"
           :show-legend="false"
           :show-x-axis="false"
+          :show-tooltip="false"
         />
           <div class="flex justify-between ml-6">
             <div v-for="item in items":key="item.dt">
             <div class="flex content-center justify-center">
-              <p class="text-xs  text-black">{{ item.dt }}</p>
+              <time class="text-xs  text-black">
+                {{ 
+                new Date(Number(item.dt) * 1000).toLocaleDateString(locale, { weekday: 'short' })
+                }}
+              </time>
             </div>
             <div class="bg-blue-300 rounded-lg">
             <NuxtImg
@@ -41,7 +46,7 @@ import { LineChart } from '@/components/ui/chart-line';
 import { useStorage } from '@vueuse/core';
 import type { LocationType, WeatherApiResponse, WeatherData, WeatherDataDailyChart } from '@/types/custom-types';
 
-const { t, locale } = useI18n();
+const { locale } = useI18n();
 const { $getByCoord } = useNuxtApp();
 const current = useStorage<LocationType[]>('current', []);
 
@@ -60,7 +65,7 @@ list.forEach((item: WeatherApiResponse) => {
   const date = new Date(item.dt * 1000).setHours(0, 0, 0, 0);
   if (!dailyData[date]) {
     dailyData[date] = {
-      dt: item.dt.toString(),
+      dt: item.dt,
       temp_min: Number(item.main.temp_min.toFixed(0)),
       temp_max: Number(item.main.temp_max.toFixed(0)),
       humidity: item.main.humidity.toFixed(0),
@@ -74,14 +79,14 @@ list.forEach((item: WeatherApiResponse) => {
 
 Object.values(dailyData).forEach((day) => {
   items.value.push({
-    dt: new Date(Number(day.dt) * 1000).toLocaleDateString(locale.value, { weekday: 'short' }),
+    dt: day.dt,
     temp_min: Number(day.temp_min.toFixed(0)),
     temp_max: Number(day.temp_max.toFixed(0)),
     humidity: day.humidity,
     icon: day.icon,
   });
   itemsChart.value.push({
-    dt: new Date(Number(day.dt) * 1000).toLocaleDateString(locale.value, { weekday: 'long' }),
+    dt: day.dt,
     TempératureMax: Number(day.temp_max.toFixed(0)),
     TempératureMin: Number(day.temp_min.toFixed(0)),
   });

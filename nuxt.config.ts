@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     // 'shadcn-nuxt',
   ],
   i18n: {
-    lazy: true,
+    lazy: false,
     langDir: 'langs/',
     locales: [
       { code: 'en', language: 'en-US', file: 'en-US.json' },

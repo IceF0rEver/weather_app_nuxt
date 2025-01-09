@@ -4,7 +4,7 @@
     class="bg-white dark:bg-gray-900 dark:bg-opacity-80 bg-opacity-75 rounded-lg shadow p-5 flex flex-col"
   >
     <header class="mb-4">
-      <h2 class="font-bold text-xl dark:text-gray-50"> {{t('title.current')}}</h2>
+      <h2 class="font-bold text-xl dark:text-gray-50"> {{$t('title.current')}}</h2>
     </header>
     <article
       class="flex items-center justify-between"
@@ -33,12 +33,14 @@
           <p class="text-lg text-gray-600 dark:text-gray-300">{{ data.weather[0].description }}</p>
         </div>
         <div class="ml-2 w-20 h-20 bg-blue-300 rounded-full">
-          <img
+          <NuxtImg
             :src="
               'https://openweathermap.org/img/wn/' +
               data.weather[0].icon +
               '@2x.png'
             "
+            :height="100"
+            :width="100"
           />
         </div>
       </div>
@@ -52,31 +54,41 @@
 import { useStorage } from '@vueuse/core';
 import type { LocationType, WeatherApiResponse } from '@/types/custom-types';
 
-const { t, locale } = useI18n();
+const { locale, } = useI18n();
 const { $getCurrent } = useNuxtApp();
 const current = useStorage<LocationType[]>('current', []);
 
-const { data } = await $getCurrent<WeatherApiResponse>(
-  current.value[0].latitude,
-  current.value[0].longitude,
-  locale.value
-);
+const data = ref<WeatherApiResponse>();
 
-if (data.value) {
-  current.value[0]['city'] = data.value.name;
-  current.value[0]['country'] = data.value.sys.country;
+const fetchData = async () => {
+  const { data : weatherData } = await $getCurrent<WeatherApiResponse>(
+    current.value[0].latitude,
+    current.value[0].longitude,
+    locale.value
+  );
 
-  const currentData: LocationType = {
-    latitude: current.value[0].latitude,
-    longitude: current.value[0].longitude,
-    city: data.value.name,
-    country: data.value.sys.country,
-    current: false,
-  };
-  if (current.value.length === 1) {
-    current.value.push(currentData);
-  } else {
-    current.value.splice(1,1,currentData);
+  if (weatherData.value) {
+    data.value = weatherData.value;
+    current.value[0]['city'] = weatherData.value.name;
+    current.value[0]['country'] = weatherData.value.sys.country;
+
+    const currentData: LocationType = {
+      latitude: current.value[0].latitude,
+      longitude: current.value[0].longitude,
+      city: weatherData.value.name,
+      country: weatherData.value.sys.country,
+      current: false,
+    };
+    if (current.value.length === 1) {
+      current.value.push(currentData);
+    } else {
+      current.value.splice(1,1,currentData);
+    };
   };
 };
+fetchData();
+
+watch(locale, () => {
+  fetchData();
+});
 </script>
