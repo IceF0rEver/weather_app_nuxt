@@ -25,6 +25,14 @@ export interface WeatherApiResponse {
       description: string;
       icon: string;
     }];
+    city: {
+      coord: {
+        lat: number;
+        lon: number;
+      };
+      name: string;
+      country: string;
+    }
   }
 
 export interface WeatherData{
