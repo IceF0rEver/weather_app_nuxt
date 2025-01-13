@@ -26,6 +26,7 @@ export default defineNuxtConfig({
       { code: 'fr', language: 'fr-FR', file: 'fr-FR.json' }
     ],
     defaultLocale: 'fr',
+    strategy: 'prefix',
   },
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
