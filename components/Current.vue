@@ -62,19 +62,19 @@ const data = ref<WeatherApiResponse>();
 
 const fetchData = async () => {
   const { data : weatherData } = await $getCurrent<WeatherApiResponse>(
-    current.value[0].latitude,
-    current.value[0].longitude,
+    current.value[1].latitude,
+    current.value[1].longitude,
     locale.value
   );
 
   if (weatherData.value) {
     data.value = weatherData.value;
-    current.value[0]['city'] = weatherData.value.name;
-    current.value[0]['country'] = weatherData.value.sys.country;
+    current.value[1]['city'] = weatherData.value.name;
+    current.value[1]['country'] = weatherData.value.sys.country;
 
     const currentData: LocationType = {
-      latitude: current.value[0].latitude,
-      longitude: current.value[0].longitude,
+      latitude: current.value[1].latitude,
+      longitude: current.value[1].longitude,
       city: weatherData.value.name,
       country: weatherData.value.sys.country,
       current: false,
