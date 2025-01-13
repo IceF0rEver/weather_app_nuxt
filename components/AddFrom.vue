@@ -15,19 +15,18 @@
         />
       </div>
       <div class="flex flex-wrap items-center justify-between gap-2">
-       
         <button 
-          @click="setCurrentToCities"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
+        @click="setCurrentToCities"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
         >
-          {{$t('button.addCurrentLocation')}}
+        {{$t('button.addCurrentLocation')}}
         </button>
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
         >
-          {{$t('button.add')}}
+        {{$t('button.add')}}
         </button>
       </div>
     </form>
@@ -39,7 +38,7 @@ import { useStorage } from '@vueuse/core';
 import type { LocationType, WeatherApiResponse } from '@/types/custom-types';
 
 const { locale } = useI18n();
-const { $getByLocation } = useNuxtApp();
+const { $getByLocation, $getCurrent } = useNuxtApp();
 const current = useStorage<LocationType[]>('current', []);
 const cities = useStorage<LocationType[]>('cities', []);
 
@@ -68,10 +67,22 @@ const setNewCity = async () => {
   }
 };
 
-const setCurrentToCities = () =>{
-  if (!cities.value.some((item : LocationType) => item.city === current.value[0].city && item.country ===  current.value[0].country) && current.value[0].city != "") {
-        cities.value.push(current.value[0]);
-      }
+const setCurrentToCities = async() =>{
+  const { data : currentData } = await $getCurrent<WeatherApiResponse>(
+    current.value[0].latitude,
+    current.value[0].longitude,
+    locale.value
+  );
+
+  if (currentData.value) {
+    current.value[0].city = currentData.value.name;
+    current.value[0].country = currentData.value.sys.country;
+
+    if (!cities.value.some((item : LocationType) => item.city === current.value[0].city && item.country ===  current.value[0].country) && current.value[0].city != "") {
+      cities.value.push(current.value[0]);
+    };
+  };
+
 }
 </script>
 

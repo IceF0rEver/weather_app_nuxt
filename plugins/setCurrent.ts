@@ -20,4 +20,5 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const current = useStorage<LocationType[]>('current', []);
   current.value.splice(0,1,data);
+  current.value.splice(1,1,data);
 });
