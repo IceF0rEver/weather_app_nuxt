@@ -12,7 +12,7 @@
       <Daily/>
 
       <div class="mx-auto">
-      <NuxtLink to="/favorites">
+      <NuxtLink :to="localePath('favorites')">
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white h-16 w-16 leading-3 rounded-full shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out text-4xl"
         >
@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
-</script>
+const localePath = useLocalePath()
 
+</script>
 <style lang="scss" scoped></style>
