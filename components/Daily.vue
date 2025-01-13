@@ -7,7 +7,7 @@
           class="h-72 min-w-[420px] sm:min-w-1/3"
           :data="itemsChart"
           index="dt"
-          :categories="['TempératureMin','TempératureMax']"
+          :categories="['temp_min','temp_max']"
           :colors="['#00BFFF','#FF4500']"
           :show-legend="false"
           :show-x-axis="false"
@@ -50,16 +50,18 @@ const { locale } = useI18n();
 const { $getByCoord } = useNuxtApp();
 const current = useStorage<LocationType[]>('current', []);
 
+
+const items = ref<WeatherData[]>([]);
+const itemsChart = ref<WeatherDataDailyChart[]>([]);
+const dailyData: Record<number, WeatherData> = {};
+
 const { data } = await $getByCoord<WeatherApiResponse>(
-  current.value[0].latitude,
-  current.value[0].longitude,
+  current.value[1].latitude,
+  current.value[1].longitude,
   locale.value
 );
 
 const list = data.value?.list as WeatherApiResponse;
-const items = ref<WeatherData[]>([]);
-const itemsChart = ref<WeatherDataDailyChart[]>([]);
-const dailyData: Record<number, WeatherData> = {};
 
 list.forEach((item: WeatherApiResponse) => {
   const date = new Date(item.dt * 1000).setHours(0, 0, 0, 0);
@@ -87,8 +89,8 @@ Object.values(dailyData).forEach((day) => {
   });
   itemsChart.value.push({
     dt: day.dt,
-    TempératureMax: Number(day.temp_max.toFixed(0)),
-    TempératureMin: Number(day.temp_min.toFixed(0)),
+    temp_max: Number(day.temp_max.toFixed(0)),
+    temp_min: Number(day.temp_min.toFixed(0)),
   });
 });
 </script>

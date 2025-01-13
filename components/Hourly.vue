@@ -7,7 +7,7 @@
           class="h-72 min-w-[520px] sm:min-w-1/3"
           :data="itemsChart"
           index="dt"
-          :categories="['Température']"
+          :categories="['temp']"
           :colors="['#808080']"
           :show-legend="false"
           :show-x-axis="false"
@@ -49,8 +49,8 @@ const { $getByCoord } = useNuxtApp();
 const current = useStorage<LocationType[]>('current', []);
 
 const { data } = await $getByCoord<WeatherApiResponse>(
-  current.value[0].latitude,
-  current.value[0].longitude,
+  current.value[1].latitude,
+  current.value[1].longitude,
   locale.value
 );
 
@@ -68,8 +68,7 @@ list.slice(0,10).forEach((item: WeatherApiResponse) => {
   });
   itemsChart.value.push({
     dt : item.dt,
-    // dt: new Date(item.dt * 1000).toLocaleTimeString(locale.value, { hour: '2-digit'}),
-    Température: Number(item.main.temp_max.toFixed(0)),
+    temp: Number(item.main.temp_max.toFixed(0)),
   });
 });
 

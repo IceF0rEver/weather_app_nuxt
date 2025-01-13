@@ -44,10 +44,10 @@ export interface WeatherData{
   }
 export interface WeatherDataHourlyChart{
   dt: number;
-  Température: number;
+  temp: number;
   }
 export interface WeatherDataDailyChart{
   dt: number;
-  TempératureMax: number;
-  TempératureMin: number;
+  temp_max: number;
+  temp_min: number;
   }
