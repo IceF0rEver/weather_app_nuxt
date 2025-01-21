@@ -45,5 +45,8 @@ export default defineNuxtConfig({
       API_MAP: process.env.API_MAP
     },
   },
-  ssr: false,  
+  ssr: false,
+  typescript: {
+    typeCheck: true
+  }
 })

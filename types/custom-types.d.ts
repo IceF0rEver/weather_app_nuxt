@@ -34,20 +34,17 @@ export interface WeatherApiResponse {
       country: string;
     }
   }
-
-export interface WeatherData{
+interface dateTime {
   dt: number;
-  temp_min: number;
+}
+export interface WeatherDataMinAndMax extends dateTime{
   temp_max: number;
+  temp_min: number;
+  }
+export interface WeatherData extends WeatherDataMinAndMax{
   humidity: string;
   icon: string;
   }
-export interface WeatherDataHourlyChart{
-  dt: number;
+export interface WeatherDataHourly extends dateTime{
   temp: number;
-  }
-export interface WeatherDataDailyChart{
-  dt: number;
-  temp_max: number;
-  temp_min: number;
   }

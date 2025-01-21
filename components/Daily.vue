@@ -44,7 +44,7 @@
 <script setup lang="ts">
 import { LineChart } from '@/components/ui/chart-line';
 import { useStorage } from '@vueuse/core';
-import type { LocationType, WeatherApiResponse, WeatherData, WeatherDataDailyChart } from '@/types/custom-types';
+import type { LocationType, WeatherApiResponse, WeatherData, WeatherDataMinAndMax } from '@/types/custom-types';
 
 const { locale } = useI18n();
 const { $getByCoord } = useNuxtApp();
@@ -52,7 +52,7 @@ const current = useStorage<LocationType[]>('current', []);
 
 
 const items = ref<WeatherData[]>([]);
-const itemsChart = ref<WeatherDataDailyChart[]>([]);
+const itemsChart = ref<WeatherDataMinAndMax[]>([]);
 const dailyData: Record<number, WeatherData> = {};
 
 const { data } = await $getByCoord<WeatherApiResponse>(

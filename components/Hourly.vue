@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { LineChart } from '@/components/ui/chart-line';
 import { useStorage } from '@vueuse/core';
-import type { LocationType, WeatherApiResponse, WeatherData, WeatherDataHourlyChart } from '@/types/custom-types';
+import type { LocationType, WeatherApiResponse, WeatherData, WeatherDataHourly } from '@/types/custom-types';
 
 const { locale } = useI18n();
 const { $getByCoord } = useNuxtApp();
@@ -56,7 +56,7 @@ const { data } = await $getByCoord<WeatherApiResponse>(
 
 const list = data.value?.list as WeatherApiResponse;
 const items = ref<WeatherData[]>([]);
-const itemsChart = ref<WeatherDataHourlyChart[]>([]);
+const itemsChart = ref<WeatherDataHourly[]>([]);
 
 list.slice(0,10).forEach((item: WeatherApiResponse) => {
   items.value.push({
