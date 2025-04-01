@@ -1,21 +1,27 @@
 <template>
-  <div class="flex flex-row items-center">
-    <form>
-      <select 
-        v-model="locale" 
-        @change="changeLocale"
-        class="form-select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-      </select>
-    </form>
-  </div>
+  <Select v-model="selectedLocale" @update:modelValue="setLocale(selectedLocale)">
+      <SelectTrigger>
+          <SelectValue :placeholder="$t('langs.select')" />
+      </SelectTrigger>
+      <SelectContent>
+          <SelectGroup>
+              <SelectItem value="fr">
+                  {{ $t('langs.fr') }}
+              </SelectItem>
+              <SelectItem value="en">
+                  {{ $t('langs.en') }}
+              </SelectItem>
+          </SelectGroup>
+      </SelectContent>
+  </Select>
 </template>
 
-<script setup>
-const { locale, setLocale } = useI18n()
+<script lang="ts" setup>
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+const { locale, setLocale } = useI18n();
+const selectedLocale = ref(locale.value);
 
-const changeLocale = () => {
-  setLocale(locale.value)
-}
+watch(selectedLocale, (newLocale) => {
+  setLocale(newLocale);
+});
 </script>

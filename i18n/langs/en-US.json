@@ -13,5 +13,9 @@
   "button": {
     "add": "Add",
     "addCurrentLocation": "Add current position"
+  },
+  "langs": {
+    "fr": "Français",
+    "en": "English"
   }
 }
