@@ -26,6 +26,8 @@
     "lucide-vue-next": "^0.469.0",
     "nuxt": "^3.14.1592",
     "radix-vue": "^1.9.12",
+    "reka-ui": "^2.1.1",
+    "shadcn-nuxt": "^1.0.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "vue": "latest",

@@ -1,12 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { resolve } from 'path';
-
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: '2025-04-01',
   devtools: { enabled: true },
-  alias: {
-    '@': resolve(__dirname, './'),
-  },
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
@@ -16,7 +11,7 @@ export default defineNuxtConfig({
     // '@maptiler/sdk',
     '@nuxt/icon',
     '@nuxt/image',
-    // 'shadcn-nuxt',
+    'shadcn-nuxt',
   ],
   i18n: {
     lazy: false,
