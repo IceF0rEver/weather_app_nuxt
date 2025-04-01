@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row justify-between items-center px-4 py-2 gap-4">
-    <div class="flex gap-4">
+    <div class="flex gap-4 items-center">
       <ChangeLang />
       <DarkMode />
     </div>
