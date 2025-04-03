@@ -1,22 +1,27 @@
+import type { WeatherApiResponse } from '@/types/custom-types';
+
 export default defineNuxtPlugin(() => {
   const apiKey = useRuntimeConfig().public.API_KEY;
 
-  const getCurrent = <T>(latitude: number, longitude: number, lang: string) => {
-    return useFetch<T>(
+  const getCurrent = async(latitude: number, longitude: number, lang: string) => {
+    const { data } = await useFetch<WeatherApiResponse>(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&lang=${lang}&units=metric`
     );
+    return { data : data.value };
   };
 
-  const getByCoord = <T>(latitude: number, longitude: number, lang: string) => {
-    return useFetch<T>(
+  const getByCoord = async (latitude: number, longitude: number, lang: string) => {
+    const { data } = await useFetch<WeatherApiResponse>(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&lang=${lang}&units=metric`
     );
+    return { data : data.value };
   };
 
-  const getByLocation = <T>(country: string, lang: string) => {
-    return useFetch<T>(
+  const getByLocation = async (country: string, lang: string) => {
+    const { data } = await useFetch<WeatherApiResponse>(
       `https://api.openweathermap.org/data/2.5/forecast?q=${country}&appid=${apiKey}&lang=${lang}&units=metric`
     );
+    return { data : data.value };
   };
 
   return {
