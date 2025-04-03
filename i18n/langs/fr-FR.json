@@ -16,6 +16,7 @@
   },
   "langs": {
     "fr": "Français",
-    "en": "Anglais"
+    "en": "Anglais",
+    "select" : "Choisir une langue"
   }
 }
